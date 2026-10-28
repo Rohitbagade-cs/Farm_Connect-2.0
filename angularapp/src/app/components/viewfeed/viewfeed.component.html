@@ -1,0 +1,83 @@
+<div class="pg">
+
+  <div class="pg-header">
+    <h2 class="pg-title">Feeds</h2>
+    <div class="pg-title-line"></div>
+  </div>
+
+  <div class="pg-toolbar">
+    <div class="pg-search">
+      <input type="text" placeholder="Search by name or type..." [(ngModel)]="searchTerm" (input)="applySearch()" />
+    </div>
+  </div>
+  
+  <div class="pg-table-card">
+    <table class="pg-table">
+      <thead>
+        <tr>
+          <th class="center" style="width:60px">S.No</th>
+          <th>Feed Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th class="center">Quantity</th>
+          <th class="center">Unit</th>
+          <th class="center">Price/Unit</th>
+          <th class="center" style="width:260px">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr *ngIf="filteredFeeds.length === 0">
+          <td colspan="8" class="pg-empty">No feeds found.</td>
+        </tr>
+        <tr *ngFor="let feed of filteredFeeds; let i = index; trackBy: trackByFeedId">
+          <td class="center">{{ i + 1 }}</td>
+          <td><strong>{{ feed.FeedName }}</strong><span *ngIf="(feed.RequestCount ?? 0) > 0" class="req-badge" [title]="deleteBlockedReason(feed)">🔒 {{ feed.RequestCount }} request{{ (feed.RequestCount ?? 0) > 1 ? 's' : '' }}</span></td>
+          <td>
+            <span class="feed-type-tag">{{ feed.Type }}</span>
+          </td>
+          <td class="feed-desc" [title]="feed.Description">{{ feed.Description }}</td>
+          <td class="center">{{ feed.Quantity }}</td>
+          <td class="center">{{ feed.Unit }}</td>
+          <td class="center">₹{{ feed.PricePerUnit }}</td>
+          <td class="center">
+            
+            <ng-container *ngIf="confirmDeleteFeedId !== feed.FeedId; else confirmBox">
+              <button class="tbl-btn tbl-btn--edit" (click)="editFeed(feed.FeedId)">✏ Edit</button>
+              <button class="tbl-btn tbl-btn--delete" (click)="askDelete(feed.FeedId)" [disabled]="(feed.RequestCount ?? 0) > 0" [title]="deleteBlockedReason(feed)">🗑 Delete</button>
+              <button class="tbl-btn tbl-btn--view" (click)="openImage(feed)">🖼 Image</button>
+            </ng-container>
+          
+            <ng-template #confirmBox>
+              <div class="inline-confirm">
+                <span class="inline-confirm__text">Delete this feed?</span>
+                <div class="inline-confirm__btns">
+                  <button class="tbl-btn tbl-btn--delete" (click)="confirmDelete(feed.FeedId!)">Yes</button>
+                  <button class="tbl-btn tbl-btn--cancel" (click)="cancelDelete()">Cancel</button>
+                </div>
+                <div class="fc-global-error" style="margin-top:8px;font-size:12px" *ngIf="deleteBlockedError">
+                  {{ deleteBlockedError }}
+                </div>
+              </div>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showImageModal">
+    <div class="modal-box" style="text-align:center">
+      <h3>🖼 Feed Image</h3>
+      <div class="image-preview">
+        <img *ngIf="modalImageSrc" [src]="modalImageSrc" alt="Feed Image" />
+        <p *ngIf="!modalImageSrc" style="color:var(--gray-400);padding:32px 0">
+          No image available
+        </p>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--cancel" (click)="closeImage()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

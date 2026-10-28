@@ -1,0 +1,67 @@
+<div class="auth-page">
+  <div class="auth-card reg-card">
+    <div class="auth-card__icon">🌿</div>
+    <h2 class="auth-card__title">Join Farm Connect</h2>
+    <p class="auth-card__sub">Create your account</p>
+
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="auth-form">
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Username</label>
+          <input class="field-input" type="text" name="username" ngModel required #username="ngModel"
+            placeholder="Your name" />
+          <div class="field-error" *ngIf="username.invalid && username.touched">Required</div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input class="field-input" type="email" name="email" ngModel required email #email="ngModel"
+            placeholder="you@example.com" />
+          <div class="field-error" *ngIf="email.invalid && email.touched">Valid email required</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <input class="field-input" type="password" name="password" ngModel required minlength="6"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).*$" #password="ngModel" placeholder="••••••••" />
+          <div class="field-error" *ngIf="password.invalid && password.touched">
+            Needs uppercase, number & special char
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Confirm Password</label>
+          <input class="field-input" type="password" name="confirmPassword" ngModel required #confirmPassword="ngModel"
+            placeholder="••••••••" />
+          <div class="field-error" *ngIf="confirmPassword.touched && confirmPassword.value !== password.value">
+            Passwords don't match
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Mobile Number</label>
+          <input class="field-input" type="text" name="mobileNumber" ngModel required pattern="^[0-9]{10}$"
+            #mobile="ngModel" placeholder="10-digit number" />
+          <div class="field-error" *ngIf="mobile.invalid && mobile.touched">10 digits required</div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Role</label>
+          <select class="field-input field-select" name="userRole" ngModel required #role="ngModel">
+            <option value="">Select role</option>
+            <option value="Owner">Owner</option>
+            <option value="Supplier">Supplier</option>
+          </select>
+          <div class="field-error" *ngIf="role.invalid && role.touched">Role required</div>
+        </div>
+      </div>
+      <button type="submit" class="auth-btn" [disabled]="registerForm.invalid">
+        Create Account →
+      </button>
+    </form>
+
+    <p class="auth-footer">
+      Already have an account? <a routerLink="/login">Sign in</a>
+    </p>
+    
+  </div>
+</div>

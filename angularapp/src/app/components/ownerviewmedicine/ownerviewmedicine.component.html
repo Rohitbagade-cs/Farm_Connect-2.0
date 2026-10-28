@@ -1,0 +1,153 @@
+<!-- <div class="pg">
+
+  <div class="pg-header">
+    <h2 class="pg-title">Available Medicines</h2>
+    <div class="pg-title-line"></div>
+  </div>
+
+  <div class="pg-toolbar">
+    <div class="pg-search">
+      <input type="text" placeholder="Search by name, brand or category..." [(ngModel)]="searchText"
+        (input)="onSearchChange()" />
+    </div>
+  </div>
+
+  <div class="pg-table-card">
+    <table class="pg-table">
+      <thead>
+        <tr>
+          <th class="center" style="width:60px">S.No</th>
+          <th>Medicine Name</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th class="center">Quantity</th>
+          <th class="center">Unit</th>
+          <th class="center">Price / Unit</th>
+          <th class="center" style="width:120px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngIf="filteredMedicines.length === 0">
+          <td colspan="9" class="pg-empty">
+            <div class="empty-state">
+              <span class="empty-state__icon">💊</span>
+              <p>No medicines available at the moment.</p>
+            </div>
+          </td>
+        </tr>
+        <tr *ngFor="let m of filteredMedicines; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td>
+            <strong>{{ m.medicineName || m.MedicineName }}</strong>
+          </td>
+          <td>
+            <span class="brand-pill">{{ m.brand || m.Brand }}</span>
+          </td>
+          <td>
+            <span class="category-pill">{{ m.category || m.Category }}</span>
+          </td>
+          <td class="desc-cell" [title]="m.description || m.Description">{{ m.description || m.Description }}</td>
+          <td class="center">{{ m.quantity || m.Quantity }}</td>
+          <td class="center">{{ m.unit || m.Unit }}</td>
+          <td class="center">
+            <span class="price-tag">
+              ₹{{ m.pricePerUnit || m.PricePerUnit }}
+            </span>
+          </td>
+          <td class="center">
+            <button class="tbl-btn tbl-btn--approve" type="button" (click)="goToRequestForm(m)">
+              🛒 Request
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+<div class="pg">
+
+  <div class="pg-header">
+    <h2 class="pg-title">Available Medicines</h2>
+    <div class="pg-title-line"></div>
+  </div>
+
+  <div class="pg-toolbar">
+    <div class="pg-search">
+      <input type="text"
+             placeholder="Search by name, brand or category..."
+             [(ngModel)]="searchText"
+             (input)="onSearchChange()" />
+    </div>
+  </div>
+
+  <!-- ✅ Loading state -->
+  <div class="pg-empty" *ngIf="loading">
+    Loading medicines...
+  </div>
+
+  <!-- ✅ Table Card (only show when not loading) -->
+  <div class="pg-table-card" *ngIf="!loading">
+    <table class="pg-table">
+      <thead>
+        <tr>
+          <th class="center" style="width:60px">S.No</th>
+          <th>Medicine Name</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th class="center">Quantity</th>
+          <th class="center">Unit</th>
+          <th class="center">Price / Unit</th>
+          <th class="center" style="width:120px">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- ✅ Empty state (only after loading finishes) -->
+        <tr *ngIf="filteredMedicines.length === 0">
+          <td colspan="9" class="pg-empty">
+            <div class="empty-state">
+              <span class="empty-state__icon">💊</span>
+              <p>No medicines available at the moment.</p>
+            </div>
+          </td>
+        </tr>
+
+        <tr *ngFor="let m of filteredMedicines; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td><strong>{{ m.medicineName || m.MedicineName }}</strong></td>
+
+          <td><span class="brand-pill">{{ m.brand || m.Brand }}</span></td>
+          <td><span class="category-pill">{{ m.category || m.Category }}</span></td>
+
+          <td class="desc-cell" [title]="m.description || m.Description">{{ m.description || m.Description }}</td>
+          <td class="center">{{ m.quantity || m.Quantity }}</td>
+          <td class="center">{{ m.unit || m.Unit }}</td>
+
+          <td class="center">
+            <span class="price-tag">₹{{ m.pricePerUnit || m.PricePerUnit }}</span>
+          </td>
+
+          <td class="center">
+            <button class="tbl-btn tbl-btn--approve" type="button" (click)="goToRequestForm(m)">
+              🛒 Request
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,79 @@
+<!-- <div class="pg">
+    <div class="pg-header">
+      <h2 class="pg-title">Welcome 👋 to Supplier Dashboard</h2>
+      <div class="pg-title-line"></div>
+    </div>
+  
+    <p style="margin-top:16px;color:#5c6b5a">
+      Manage medicines, feeds, requests and feedback from here.
+    </p>
+  </div> -->
+
+
+
+
+
+
+<div class="home-page">
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-banner__bg">
+      <div class="hero-banner__circle c1"></div>
+      <div class="hero-banner__circle c2"></div>
+      <div class="hero-banner__circle c3"></div>
+    </div>
+    <div class="hero-banner__content">
+      <p class="hero-banner__greeting">{{ greeting }},</p>
+      <h1 class="hero-banner__name">{{ supplierName }} 👋</h1>
+      <p class="hero-banner__date">{{ currentDate }}</p>
+      <p class="hero-banner__tagline">
+        Manage your inventory, track requests and grow your supply business.
+      </p>
+    </div>
+    <div class="hero-banner__emoji-wall">
+      <span class="floating e1">💊</span>
+      <span class="floating e2">🌾</span>
+      <span class="floating e3">📦</span>
+      <span class="floating e4">✅</span>
+    </div>
+  </div>
+  <!-- Stats / Feature Cards -->
+  <div class="section">
+    <h2 class="section__title">Your Dashboard</h2>
+    <p class="section__sub">Everything you need in one place</p>
+    <div class="cards-grid">
+      <div class="feat-card" *ngFor="let s of stats; let i = index" [class]="'feat-card ' + s.color"
+        [style.animation-delay]="i * 0.1 + 's'" (click)="navigate(s.route)">
+        <div class="feat-card__icon">{{ s.icon }}</div>
+        <div class="feat-card__body">
+          <h3>{{ s.label }}</h3>
+          <p>{{ s.desc }}</p>
+        </div>
+        <span class="feat-card__arrow">→</span>
+      </div>
+    </div>
+  </div>
+  <!-- Quick Actions -->
+  <div class="section">
+    <h2 class="section__title">Quick Actions</h2>
+    <p class="section__sub">Jump straight into common tasks</p>
+    <div class="quick-grid">
+      <button class="quick-btn" *ngFor="let q of quickLinks; let i = index" [style.animation-delay]="i * 0.08 + 's'"
+        (click)="navigate(q.route)">
+        <span class="quick-btn__icon">{{ q.icon }}</span>
+        <span class="quick-btn__label">{{ q.label }}</span>
+      </button>
+    </div>
+  </div>
+  <!-- About Section -->
+  <div class="about-strip">
+    <div class="about-strip__inner">
+      <div class="about-strip__icon">🏪</div>
+      <div>
+        <h3>FarmConnect Supplier Portal</h3>
+        <p>You are helping farmers across the region access quality medicines and feeds. Your inventory keeps farms
+          healthy and productive.</p>
+      </div>
+    </div>
+  </div>
+</div>

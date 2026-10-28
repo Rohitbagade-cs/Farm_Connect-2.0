@@ -1,0 +1,35 @@
+<header class="dash-nav owner-nav">
+  <div class="dash-nav__inner">
+    <a class="dash-nav__brand">🌿 Farm<strong>Connect</strong></a>
+    <nav class="dash-nav__links">
+      <span class="dash-nav__badge">DemoUser / User</span>
+      <a routerLink="home" routerLinkActive="active">Home</a>
+      <div class="dn-dropdown">
+        <button class="dn-dropbtn">LiveStock <span class="dn-chevron">▾</span></button>
+        <div class="dn-menu">
+          <a routerLink="createlivestock">Add Livestock</a>
+          <a routerLink="viewlivestocks">My Livestock</a>
+        </div>
+      </div>
+      <a routerLink="medicines" routerLinkActive="active">Medicines</a>
+      <a routerLink="feeds" routerLinkActive="active">Feeds</a>
+      <a routerLink="ownerviewrequest" routerLinkActive="active">My Requests</a>
+      <a routerLink="aiassistant" routerLinkActive="active">🤖 AI Assistant</a>
+      <a routerLink="monsoonguard" routerLinkActive="active">🌦️ MonsoonGuard</a>
+      <div class="dn-dropdown">
+        <button class="dn-dropbtn">Feedback <span class="dn-chevron">▾</span></button>
+        <div class="dn-menu">
+          <a routerLink="useraddfeedback">Post Feedback</a>
+          <a routerLink="ownerviewfeedback">My Feedbacks</a>
+        </div>
+      </div>
+      <button class="dn-logout" (click)="logout()">Logout</button>
+    </nav>
+  </div>
+</header>
+
+
+<router-outlet></router-outlet>
+
+<!-- Floating Boli AI voice assistant on every portal page -->
+<app-bolifab></app-bolifab>

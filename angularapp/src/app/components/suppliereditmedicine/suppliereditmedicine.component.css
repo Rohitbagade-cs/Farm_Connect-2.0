@@ -1,0 +1,123 @@
+
+.container {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 22px 22px 26px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.d-flex {
+    gap: 12px;
+}
+
+h3 {
+    margin: 0;
+    font-weight: 700;
+    color: #1f2937;
+    letter-spacing: 0.2px;
+}
+
+hr {
+    margin: 14px 0 18px;
+    border: 0;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+
+label {
+    display: block;
+    margin: 10px 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+
+.form-control {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 10px 12px;
+    font-size: 14px;
+    background: #f9fafb;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+
+textarea.form-control {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+.form-control:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+
+.btn.btn-primary.btn-sm {
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 600;
+    background: #2563eb;
+    border: 1px solid #2563eb;
+}
+
+.btn.btn-primary.btn-sm:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+
+.btn.btn-success.mt-3.w-100 {
+    margin-top: 16px !important;
+    padding: 11px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    background: #16a34a;
+    border: 1px solid #16a34a;
+    box-shadow: 0 8px 18px rgba(22, 163, 74, 0.18);
+}
+
+.btn.btn-success.mt-3.w-100:hover {
+    background: #15803d;
+    border-color: #15803d;
+}
+
+.text-danger {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.text-danger.mt-2 {
+    margin-top: 12px !important;
+}
+
+
+form {
+    margin-top: 6px;
+}
+
+
+@media (max-width: 520px) {
+    .container {
+        margin: 18px 12px;
+        padding: 16px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .form-control {
+        padding: 9px 10px;
+    }
+}

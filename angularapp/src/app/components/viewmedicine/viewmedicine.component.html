@@ -1,0 +1,63 @@
+<div class="pg">
+  <div class="pg-header">
+    <h2 class="pg-title">Medicines</h2>
+    <div class="pg-title-line"></div>
+  </div>
+  <div class="pg-toolbar">
+    <div class="pg-search">
+      <input type="text" placeholder="Search medicines..." [(ngModel)]="searchText" (input)="searchMedicine()" />
+    </div>
+  </div>
+  <div class="pg-table-card">
+    <table class="pg-table">
+      <thead>
+        <tr>
+          <th class="center" style="width:60px">S.No</th>
+          <th>Medicine Name</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th class="center">Qty</th>
+          <th class="center">Unit</th>
+          <th class="center">Price/Unit</th>
+          <th class="center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicine of filteredMedicines; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td><strong>{{ medicine.MedicineName }}</strong><span *ngIf="(medicine.RequestCount ?? 0) > 0" class="req-badge" [title]="deleteBlockedReason(medicine)">🔒 {{ medicine.RequestCount }} request{{ (medicine.RequestCount ?? 0) > 1 ? 's' : '' }}</span></td>
+          <td>{{ medicine.Brand }}</td>
+          <td>{{ medicine.Category }}</td>
+          <td class="desc-cell" [title]="medicine.Description">{{ medicine.Description }}</td>
+          <td class="center">{{ medicine.Quantity }}</td>
+          <td class="center">{{ medicine.Unit }}</td>
+          <td class="center">₹{{ medicine.PricePerUnit }}</td>
+          <td class="center">
+            <button class="tbl-btn tbl-btn--edit"
+              [routerLink]="['/admin/medicine/view/suppliereditmedicine', medicine.MedicineId]">✏ Edit</button>
+            <button class="tbl-btn tbl-btn--delete" (click)="deleteMedicine(medicine.MedicineId!)" [disabled]="(medicine.RequestCount ?? 0) > 0" [title]="deleteBlockedReason(medicine)">🗑 Delete</button>
+            <button class="tbl-btn tbl-btn--view" (click)="showImage(medicine.Image)">🖼 Image</button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredMedicines.length === 0">
+          <td colspan="9" class="pg-empty">No medicines found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fc-global-error" *ngIf="deleteErrorMessage">{{ deleteErrorMessage }}</p>
+
+  <div class="modal-overlay" *ngIf="showImagePopup">
+    <div class="modal-box">
+      <h3>Medicine Image</h3>
+      <div style="text-align:center; padding: 12px 0;">
+        <img [src]="selectedImage" alt="Medicine" style="max-width:100%; border-radius:8px;" *ngIf="selectedImage" />
+        <p *ngIf="!selectedImage" style="color:var(--gray-400)">No image available</p>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--cancel" (click)="closeImagePopup()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

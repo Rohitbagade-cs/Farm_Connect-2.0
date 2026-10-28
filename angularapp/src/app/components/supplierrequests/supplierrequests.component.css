@@ -1,0 +1,181 @@
+.page {
+  padding: 18px 22px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.divider {
+  height: 2px;
+  width: 60%;
+  margin: 0 auto 18px;
+  background: #2c84b8;
+  opacity: 0.3;
+}
+
+.search-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 0 14px;
+}
+
+.search {
+  width: 260px;
+  padding: 8px 10px;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.req-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.req-table thead th {
+  background: #2c84b8;
+  color: white;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.req-table td {
+  border: 1px solid #e0e0e0;
+  padding: 9px 10px;
+  font-size: 13px;
+}
+
+.center {
+  text-align: center;
+}
+
+.empty {
+  text-align: center;
+  padding: 16px;
+  color: #444;
+}
+
+.col-sno {
+  width: 70px;
+}
+
+.col-qty {
+  width: 90px;
+}
+
+.col-date {
+  width: 140px;
+}
+
+.col-status {
+  width: 120px;
+}
+
+.col-action {
+  width: 240px;
+}
+
+.btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 2px 4px;
+  font-size: 12px;
+}
+
+.btn-ls {
+  background: #e9ecef;
+  color: #333;
+}
+
+.btn-approve {
+  background: #2fb344;
+  color: white;
+}
+
+.btn-reject {
+  background: #e03131;
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.badge.pending {
+  background: #fff3bf;
+  color: #8a6d00;
+}
+
+.badge.approved {
+  background: #d3f9d8;
+  color: #2b8a3e;
+}
+
+.badge.rejected {
+  background: #ffe3e3;
+  color: #c92a2a;
+}
+
+.global-error {
+  margin: 10px 0;
+  color: #c92a2a;
+  font-weight: 700;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 340px;
+  background: white;
+  border-radius: 6px;
+  padding: 16px 16px 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modal-body .row {
+  margin: 6px 0;
+  font-size: 13px;
+}
+
+.btn-close {
+  background: #e03131;
+  color: white;
+  width: 100%;
+  margin-top: 12px;
+}

@@ -1,0 +1,1 @@
+FarmConnect is a role-based full-stack app for farm owners and suppliers. It connects livestock records, feed and medicine listings, supply requests, supplier decisions and feedback in one workflow. Built with Angular, ASP.NET Core, Entity Framework Core, SQL Server and JWT authentication.

@@ -1,0 +1,23 @@
+<div class="form-pg">
+  <div class="form-card">
+    <div class="form-card__header">
+      <div>
+        <h2 class="form-card__title">Post Feedback</h2>
+        <div class="form-card__title-bar"></div>
+      </div>
+    </div>
+    <div class="fc-global-success" *ngIf="successMsg">{{ successMsg }}</div>
+    <div class="fc-global-error" *ngIf="errorMsg">{{ errorMsg }}</div>
+    <div class="fc-field">
+      <label class="fc-label">Your Feedback <span class="fc-req">*</span></label>
+      <textarea class="fc-textarea" [(ngModel)]="feedbackText" rows="4"
+        placeholder="Share your experience with Farm Connect..."></textarea>
+      <div class="fc-error" *ngIf="isSubmitted && (!feedbackText || feedbackText.trim().length === 0)">
+        Feedback is required.
+      </div>
+    </div>
+    <button class="fc-submit" (click)="submitFeedback()" [disabled]="loading">
+      {{ loading ? 'Posting...' : 'Submit Feedback' }}
+    </button>
+  </div>
+</div>

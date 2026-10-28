@@ -1,0 +1,84 @@
+<div class="form-pg">
+  <div class="form-card">
+
+    <div class="form-card__header">
+      <div>
+        <h2 class="form-card__title">Edit Feed</h2>
+        <div class="form-card__title-bar"></div>
+      </div>
+      <button class="fc-back-btn" type="button" (click)="back()">
+        ← Back
+      </button>
+    </div>
+
+    <div class="fc-global-error" *ngIf="allFieldsError">{{ allFieldsError }}</div>
+    <div class="fc-global-error" *ngIf="duplicateError">{{ duplicateError }}</div>
+    <form #feedForm="ngForm" (ngSubmit)="updateFeed(feedForm)" novalidate>
+
+      <div class="fc-field">
+        <label class="fc-label">Feed Name <span class="fc-req">*</span></label>
+        <input class="fc-input" type="text" placeholder="e.g. Wheat Bran" [(ngModel)]="feed.FeedName" name="FeedName"
+          #FeedName="ngModel" required />
+        <div class="fc-error" *ngIf="showError(FeedName)">*Feed Name is required</div>
+      </div>
+
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Type <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" placeholder="e.g. Grain" [(ngModel)]="feed.Type" name="Type"
+            #Type="ngModel" required />
+          <div class="fc-error" *ngIf="showError(Type)">*Type is required</div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Unit <span class="fc-req">*</span></label>
+          <select class="fc-select" [(ngModel)]="feed.Unit" name="Unit" #Unit="ngModel" required>
+            <option value="" disabled>Select Unit</option>
+            <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+          </select>
+          <div class="fc-error" *ngIf="showError(Unit)">*Unit is required</div>
+        </div>
+      </div>
+
+      <div class="fc-field">
+        <label class="fc-label">Description <span class="fc-req">*</span></label>
+        <textarea class="fc-textarea" placeholder="Describe the feed..." [(ngModel)]="feed.Description"
+          name="Description" #Description="ngModel" required></textarea>
+        <div class="fc-error" *ngIf="showError(Description)">*Description is required</div>
+      </div>
+
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Quantity <span class="fc-req">*</span></label>
+          <input class="fc-input" type="number" placeholder="0" [(ngModel)]="feed.Quantity" name="Quantity"
+            #Quantity="ngModel" required min="1" />
+          <div class="fc-error" *ngIf="showError(Quantity)">*Quantity is required</div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Price Per Unit <span class="fc-req">*</span></label>
+          <input class="fc-input" type="number" placeholder="₹0.00" [(ngModel)]="feed.PricePerUnit" name="PricePerUnit"
+            #PricePerUnit="ngModel" required min="1" />
+          <div class="fc-error" *ngIf="showError(PricePerUnit)">*Price is required</div>
+        </div>
+
+      <div class="fc-field">
+        <label class="fc-label">Feed Image</label>
+        <div class="fc-file-wrap">
+          <label class="fc-file-btn">
+            📁 Choose Image
+            <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+          </label>
+          <span class="fc-file-name" *ngIf="selectedFileName">{{ selectedFileName }}</span>
+          <span class="fc-file-name fc-file-none" *ngIf="!selectedFileName">No new file chosen</span>
+        </div>
+
+        <div class="fc-existing-image" *ngIf="feed.Image && !selectedFileName">
+          <img [src]="feed.Image" alt="Current feed image" />
+          <span>Current image</span>
+        </div>
+      </div>
+
+      <button type="submit" class="fc-submit">Update Feed</button>
+      </div>
+    </form>
+  </div>
+</div>

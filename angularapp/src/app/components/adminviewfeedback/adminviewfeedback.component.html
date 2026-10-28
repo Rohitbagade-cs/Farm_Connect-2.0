@@ -1,0 +1,45 @@
+<div class="pg">
+  <div class="pg-header">
+    <h2 class="pg-title">Feedback Details</h2>
+    <div class="pg-title-line"></div>
+  </div>
+  <div class="pg-table-card">
+    <div class="pg-empty" *ngIf="!feedbacks || feedbacks.length === 0">No feedback found.</div>
+    <table class="pg-table" *ngIf="feedbacks && feedbacks.length > 0">
+      <thead>
+        <tr>
+          <th class="center">S.No</th>
+          <th>User Name</th>
+          <th>Feedback</th>
+          <th class="center">Posted Date</th>
+          <th class="center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of feedbacks; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td><strong>{{ f.uiUserName }}</strong></td>
+          <td>{{ f.uiFeedback }}</td>
+          <td class="center">{{ f.uiPostedDate ? (f.uiPostedDate | date:'dd MMM yyyy') : '-' }}</td>
+          <td class="center">
+            <button class="tbl-btn tbl-btn--view" (click)="openProfile(f)">👤 Profile</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Profile Modal -->
+  <div class="modal-overlay" *ngIf="showProfileModal">
+    <div class="modal-box">
+      <h3>User Details</h3>
+      <div *ngIf="selectedFeedback" style="margin: 16px 0;">
+        <p class="modal-detail"><b>Email:</b> {{ selectedFeedback?.uiEmail }}</p>
+        <p class="modal-detail"><b>Username:</b> {{ selectedFeedback?.uiUserName }}</p>
+        <p class="modal-detail"><b>Mobile:</b> {{ selectedFeedback?.uiMobile }}</p>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--cancel" (click)="closeProfile()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+
+
+
+<!-- <div class="page">
+    <h2 class="title">My Feedback</h2>
+    <div class="title-line"></div>
+   
+    <div *ngIf="loading" class="info">Loading...</div>
+    <div *ngIf="!loading && errorMsg" class="info error">{{ errorMsg }}</div>
+   
+    <div class="table-wrap" *ngIf="!loading && feedbackList?.length > 0">
+      <table class="feedback-table">
+        <thead>
+          <tr>
+            <th class="col-sno">S.No</th>
+            <th>Feedback</th>
+            <th class="col-action">Action</th>
+          </tr>
+        </thead>
+   
+        <tbody>
+          <tr *ngFor="let fb of feedbackList; let i = index">
+            <td class="center">{{ i + 1 }}</td>
+            <td class="center">{{ getFeedbackText(fb) }}</td>
+            <td class="center">
+              <button class="delete-btn" (click)="openDeleteModal(fb)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+    <div *ngIf="!loading && (!feedbackList || feedbackList.length === 0) && !errorMsg" class="info">
+      No records found.
+    </div>
+  </div>
+   
+
+  <div class="modal-backdrop" *ngIf="showDeleteModal">
+    <div class="modal">
+      <p class="modal-text">Are you sure you want to delete?</p>
+      <div class="modal-actions">
+        <button class="modal-yes" (click)="confirmDelete()">Yes, Delete</button>
+        <button class="modal-cancel" (click)="closeDeleteModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+   
+
+  <div class="modal-backdrop" *ngIf="showLogoutModal">
+    <div class="modal">
+      <p class="modal-text">Are you sure you want to logout?</p>
+      <div class="modal-actions">
+        <button class="modal-yes" (click)="confirmLogout()">Yes, Logout</button>
+        <button class="modal-cancel" (click)="closeLogoutModal()">Cancel</button>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+<div class="pg">
+  <div class="pg-header">
+    <h2 class="pg-title">My Feedbacks</h2>
+    <div class="pg-title-line"></div>
+  </div>
+  <div class="pg-table-card">
+    <div class="pg-empty" *ngIf="!loading && (!feedbackList || feedbackList.length === 0)">
+      No feedbacks found.
+    </div>
+    <table class="pg-table" *ngIf="feedbackList && feedbackList.length > 0">
+      <thead>
+        <tr>
+          <th class="center">S.No</th>
+          <th>Feedback</th>
+          <th class="center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fb of feedbackList; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td>{{ getFeedbackText(fb) }}</td>
+          <td class="center">
+            <button class="tbl-btn tbl-btn--delete" (click)="openDeleteModal(fb)">🗑 Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Delete Modal -->
+  <div class="modal-overlay" *ngIf="showDeleteModal">
+    <div class="modal-box">
+      <h3>Confirm Delete</h3>
+      <p>Are you sure you want to delete this feedback?</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--danger" (click)="confirmDelete()">Yes, Delete</button>
+        <button class="modal-btn modal-btn--cancel" (click)="closeDeleteModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!-- Logout Modal -->
+  <div class="modal-overlay" *ngIf="showLogoutModal">
+    <div class="modal-box">
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to logout?</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--danger" (click)="confirmLogout()">Yes, Logout</button>
+        <button class="modal-btn modal-btn--cancel" (click)="closeLogoutModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

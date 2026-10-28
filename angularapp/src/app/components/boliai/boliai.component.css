@@ -1,0 +1,142 @@
+/* Compact widget styles — hosted inside the floating Boli panel */
+.boli-card {
+  width: 100%;
+  background: #fffdf7;
+  padding: 20px 20px 16px;
+  text-align: center;
+}
+
+.boli-card h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  color: #14532d;
+}
+
+.boli-sub {
+  margin: 0 0 14px;
+  color: #4b5d52;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.boli-sub span { font-size: 12px; color: #7a8a80; }
+
+.boli-langs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.boli-langs button {
+  border: 2px solid #cfe3d4;
+  background: #fff;
+  color: #2d5a3d;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.boli-langs button.active {
+  background: #166534;
+  border-color: #166534;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(22, 101, 52, 0.35);
+}
+
+.boli-warn {
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.boli-mic {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 35% 30%, #34a853, #166534);
+  box-shadow: 0 10px 30px rgba(22, 101, 52, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s;
+  position: relative;
+}
+.boli-mic:hover:not(:disabled) { transform: scale(1.05); }
+.boli-mic:disabled { opacity: 0.5; cursor: not-allowed; }
+.boli-mic-icon { font-size: 34px; }
+
+.boli-mic.live { animation: boli-pulse 1.4s ease-out infinite; }
+@keyframes boli-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.55); }
+  70%  { box-shadow: 0 0 0 26px rgba(52, 168, 83, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0); }
+}
+
+.boli-status {
+  margin: 12px 0 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #2d5a3d;
+  min-height: 22px;
+}
+
+.boli-live {
+  margin: 10px auto 0;
+  background: #f0fdf4;
+  border: 1px dashed #86c79a;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14.5px;
+  color: #14532d;
+  min-height: 20px;
+}
+
+.boli-stop {
+  margin-top: 12px;
+  border: 1px solid #f0b4b4;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.boli-error {
+  margin: 12px auto 0;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.boli-history {
+  margin-top: 20px;
+  text-align: left;
+}
+.boli-history h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  color: #14532d;
+  text-align: center;
+}
+.boli-turn {
+  background: #f7faf7;
+  border: 1px solid #e2e8e2;
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+.boli-q { margin: 0 0 6px; font-size: 13.5px; color: #334155; }
+.boli-a { margin: 0; font-size: 13.5px; color: #14532d; line-height: 1.55; }
+
+.boli-hint {
+  margin: 16px 0 0;
+  font-size: 11.5px;
+  color: #93a195;
+}

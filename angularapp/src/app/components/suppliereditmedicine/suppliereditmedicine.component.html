@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Edit Medicine</h3>
+    <button class="btn btn-primary btn-sm" (click)="back()">Back</button>
+  </div>
+
+  <hr />
+
+  <p class="text-danger" *ngIf="showValidationError">
+    All fields are required.
+  </p>
+
+  <form (ngSubmit)="updateMedicine()" *ngIf="medicine">
+
+    <label>Medicine Name*</label>
+    <input
+      type="text"
+      [(ngModel)]="medicine.MedicineName"
+      name="MedicineName"
+      class="form-control"
+      required />
+
+    <label>Brand*</label>
+    <input
+      type="text"
+      [(ngModel)]="medicine.Brand"
+      name="Brand"
+      class="form-control"
+      required />
+
+    <label>Category*</label>
+    <input
+      type="text"
+      [(ngModel)]="medicine.Category"
+      name="Category"
+      class="form-control"
+      required />
+
+    <label>Description*</label>
+    <textarea
+      [(ngModel)]="medicine.Description"
+      name="Description"
+      class="form-control"
+      required></textarea>
+
+    <label>Quantity*</label>
+    <input
+      type="number"
+      [(ngModel)]="medicine.Quantity"
+      name="Quantity"
+      class="form-control"
+      required />
+
+    <label>Unit*</label>
+    <select
+      [(ngModel)]="medicine.Unit"
+      name="Unit"
+      class="form-control"
+      required>
+      <option value="">Select</option>
+      <option value="g">g</option>
+      <option value="kg">kg</option>
+      <option value="ml">ml</option>
+      <option value="ltr">ltr</option>
+    </select>
+
+    <label>Price Per Unit*</label>
+    <input
+      type="number"
+      [(ngModel)]="medicine.PricePerUnit"
+      name="PricePerUnit"
+      class="form-control"
+      required />
+
+    <label>Image*</label>
+    <input
+      type="text"
+      [(ngModel)]="medicine.Image"
+      name="Image"
+      class="form-control"
+      required />
+
+    <p class="text-danger mt-2" *ngIf="backendErrorMessage">
+      {{ backendErrorMessage }}
+    </p>
+
+    <button type="submit" class="btn btn-success mt-3 w-100">
+      Update Medicine
+    </button>
+
+  </form>
+</div>

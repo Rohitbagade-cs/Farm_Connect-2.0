@@ -1,0 +1,66 @@
+<div class="pg">
+ 
+  <div class="pg-header">
+    <h2 class="pg-title">Available Feeds</h2>
+    <div class="pg-title-line"></div>
+  </div>
+
+  <div class="pg-toolbar">
+    <div class="pg-search">
+      <input type="text" placeholder="Search by name, type or description..." [(ngModel)]="searchTerm"
+        (input)="onSearchChange()" />
+    </div>
+  </div>
+
+  <div class="pg-empty" *ngIf="loading">Loading feeds...</div>
+  
+  <div class="pg-table-card" *ngIf="!loading">
+    <table class="pg-table">
+      <thead>
+        <tr>
+          <th class="center" style="width:60px">S.No</th>
+          <th>Feed Name</th>
+          <!-- <th>Type</th> -->
+          <th>Description</th>
+          <th class="center">Quantity</th>
+          <th class="center">Unit</th>
+          <th class="center">Price / Unit</th>
+          <th class="center" style="width:120px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Empty state -->
+        <tr *ngIf="filteredFeeds.length === 0">
+          <td colspan="8" class="pg-empty">
+            <div class="empty-state">
+              <span class="empty-state__icon">🌾</span>
+              <p>No feeds available at the moment.</p>
+            </div>
+          </td>
+        </tr>
+        <tr *ngFor="let feed of filteredFeeds; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td>
+            <strong>{{ feed.feedName || feed.FeedName }}</strong>
+          </td>
+          <!-- <td>
+            <span class="type-pill">{{ feed.feedType || feed.Type }}</span>
+          </td> -->
+          <td class="desc-cell" [title]="feed.description || feed.Description">{{ feed.description || feed.Description }}</td>
+          <td class="center">{{ feed.quantity || feed.Quantity }}</td>
+          <td class="center">{{ feed.unit || feed.Unit }}</td>
+          <td class="center">
+            <span class="price-tag">
+              ₹{{ feed.pricePerUnit || feed.PricePerUnit }}
+            </span>
+          </td>
+          <td class="center">
+            <button class="tbl-btn tbl-btn--approve" (click)="requestFeed(feed.feedId || feed.FeedId)">
+              🛒 Request
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

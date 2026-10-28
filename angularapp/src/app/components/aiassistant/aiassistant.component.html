@@ -1,0 +1,107 @@
+<div class="ai-page">
+  <div class="ai-card">
+    <div class="ai-header">
+      <h2>🤖 FarmConnect AI Assistant</h2>
+      <p class="ai-subtitle">Chat, diagnose symptoms, plan feeding and write product descriptions — powered by AI.</p>
+    </div>
+
+    <div class="ai-tabs">
+      <button [class.active]="activeTab === 'chat'" (click)="setTab('chat')">💬 Ask AI</button>
+      <button [class.active]="activeTab === 'symptom'" (click)="setTab('symptom')">🩺 Symptom Checker</button>
+      <button [class.active]="activeTab === 'feed'" (click)="setTab('feed')">🌾 Feed Advisor</button>
+      <button [class.active]="activeTab === 'describe'" *ngIf="isSupplierUser" (click)="setTab('describe')">✍️ Description Writer</button>
+    </div>
+
+    <!-- ============ TAB 1: CHAT ============ -->
+    <div class="ai-tab-body" *ngIf="activeTab === 'chat'">
+      <div class="chat-window">
+        <div *ngFor="let m of chatMessages" class="chat-msg" [ngClass]="m.role">
+          <div class="chat-bubble">{{ m.content }}</div>
+        </div>
+        <div *ngIf="chatLoading" class="chat-msg assistant">
+          <div class="chat-bubble typing">Thinking<span>.</span><span>.</span><span>.</span></div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input [(ngModel)]="chatInput" (keyup.enter)="sendChat()"
+               placeholder="Ask about livestock care, feeding, health..." [disabled]="chatLoading" />
+        <button (click)="sendChat()" [disabled]="chatLoading || !chatInput.trim()">Send</button>
+      </div>
+    </div>
+
+    <!-- ============ TAB 2: SYMPTOM CHECKER ============ -->
+    <div class="ai-tab-body" *ngIf="activeTab === 'symptom'">
+      <div class="form-grid">
+        <label>Animal species
+          <input [(ngModel)]="symptomSpecies" placeholder="e.g. Cow, Goat, Poultry" />
+        </label>
+        <label class="full">Describe the symptoms
+          <textarea [(ngModel)]="symptomText" rows="4"
+            placeholder="e.g. Not eating for 2 days, high fever, discharge from nose..."></textarea>
+        </label>
+      </div>
+      <button class="primary-btn" (click)="checkSymptoms()"
+              [disabled]="symptomLoading || !symptomSpecies.trim() || !symptomText.trim()">
+        {{ symptomLoading ? 'Analyzing...' : 'Check Symptoms' }}
+      </button>
+      <div class="ai-result" *ngIf="symptomResult">
+        <h4>Assessment</h4>
+        <pre>{{ symptomResult }}</pre>
+        <p class="disclaimer">⚠️ This is not a veterinary diagnosis. Consult a veterinarian for serious cases.</p>
+      </div>
+    </div>
+
+    <!-- ============ TAB 3: FEED ADVISOR ============ -->
+    <div class="ai-tab-body" *ngIf="activeTab === 'feed'">
+      <div class="form-grid">
+        <label>Species
+          <input [(ngModel)]="feedSpecies" placeholder="e.g. Cow" />
+        </label>
+        <label>Age (years)
+          <input type="number" [(ngModel)]="feedAge" min="0" placeholder="e.g. 3" />
+        </label>
+        <label>Breed
+          <input [(ngModel)]="feedBreed" placeholder="e.g. Holstein (optional)" />
+        </label>
+        <label>Goal
+          <input [(ngModel)]="feedGoal" placeholder="e.g. More milk, weight gain (optional)" />
+        </label>
+      </div>
+      <button class="primary-btn" (click)="recommendFeed()"
+              [disabled]="feedLoading || !feedSpecies.trim() || feedAge === null">
+        {{ feedLoading ? 'Planning...' : 'Recommend Feed' }}
+      </button>
+      <div class="ai-result" *ngIf="feedResult">
+        <h4>Feeding Plan</h4>
+        <pre>{{ feedResult }}</pre>
+      </div>
+    </div>
+
+    <!-- ============ TAB 4: DESCRIPTION WRITER ============ -->
+    <div class="ai-tab-body" *ngIf="activeTab === 'describe' && isSupplierUser">
+      <div class="form-grid">
+        <label>Product name
+          <input [(ngModel)]="productName" placeholder="e.g. SuperGrow Cattle Feed" />
+        </label>
+        <label>Category
+          <select [(ngModel)]="productCategory">
+            <option>Feed</option>
+            <option>Medicine</option>
+          </select>
+        </label>
+        <label class="full">Key points (comma separated)
+          <textarea [(ngModel)]="keyPoints" rows="3"
+            placeholder="e.g. High protein, 50kg bag, suitable for dairy cows"></textarea>
+        </label>
+      </div>
+      <button class="primary-btn" (click)="generateDescription()"
+              [disabled]="descriptionLoading || !productName.trim()">
+        {{ descriptionLoading ? 'Writing...' : 'Generate Description' }}
+      </button>
+      <div class="ai-result" *ngIf="descriptionResult">
+        <h4>Generated Description <button class="copy-btn" (click)="copyDescription()">📋 Copy</button></h4>
+        <pre>{{ descriptionResult }}</pre>
+      </div>
+    </div>
+  </div>
+</div>

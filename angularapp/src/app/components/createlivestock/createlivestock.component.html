@@ -1,0 +1,87 @@
+<div class="form-pg">
+  <div class="form-card">
+   
+    <div class="form-card__header">
+      <div>
+        <h2 class="form-card__title">Add Livestock</h2>
+        <div class="form-card__title-bar"></div>
+      </div>
+    </div>
+   
+    <div class="fc-global-error" *ngIf="globalError">{{ globalError }}</div>
+    <div class="fc-global-error" *ngIf="duplicateError">{{ duplicateError }}</div>
+    <form #livestockForm="ngForm" (ngSubmit)="submit(livestockForm)" novalidate>
+      
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Name <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="Name" placeholder="e.g. Bessie" [(ngModel)]="livestock.name"
+            #Name="ngModel" required />
+          <div class="fc-error" *ngIf="Name.invalid && Name.touched">*Name is required</div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Species <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="Species" placeholder="e.g. Cattle" [(ngModel)]="livestock.species"
+            #Species="ngModel" required />
+          <div class="fc-error" *ngIf="Species.invalid && Species.touched">*Species is required</div>
+        </div>
+      </div>
+      
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Age <span class="fc-req">*</span></label>
+          <input class="fc-input" type="number" name="Age" placeholder="Years" [(ngModel)]="livestock.age"
+            #Age="ngModel" required min="1" />
+          <div class="fc-error" *ngIf="Age.errors?.['required'] && Age.touched">*Age is required</div>
+          <div class="fc-error" *ngIf="Age.errors?.['min'] && Age.touched">*Age must be greater than 0</div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Breed <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="Breed" placeholder="e.g. Holstein" [(ngModel)]="livestock.breed"
+            #Breed="ngModel" required />
+          <div class="fc-error" *ngIf="Breed.invalid && Breed.touched">*Breed is required</div>
+        </div>
+      </div>
+      
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Health Condition <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="HealthCondition" placeholder="e.g. Healthy"
+            [(ngModel)]="livestock.healthCondition" #HealthCondition="ngModel" required />
+          <div class="fc-error" *ngIf="HealthCondition.invalid && HealthCondition.touched">*Health Condition is required
+          </div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Vaccination Status <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="VaccinationStatus" placeholder="e.g. Vaccinated"
+            [(ngModel)]="livestock.vaccinationStatus" #VaccinationStatus="ngModel" required />
+          <div class="fc-error" *ngIf="VaccinationStatus.invalid && VaccinationStatus.touched">*Vaccination Status is
+            required</div>
+        </div>
+      </div>
+      
+      <div class="fc-field">
+        <label class="fc-label">Location <span class="fc-req">*</span></label>
+        <input class="fc-input" type="text" name="Location" placeholder="e.g. North Barn, Farm 2"
+          [(ngModel)]="livestock.location" #Location="ngModel" required />
+        <div class="fc-error" *ngIf="Location.invalid && Location.touched">*Location is required</div>
+      </div>
+      
+      <button type="submit" class="fc-submit" [disabled]="isSubmitting">
+
+        {{ isSubmitting ? 'Adding...' : 'Add Livestock' }}
+      </button>
+    </form>
+    <!-- Success Popup -->
+    <div class="modal-overlay" *ngIf="showSuccessPopup">
+      <div class="modal-box" style="text-align:center">
+        <div style="font-size:48px; margin-bottom:12px">✅</div>
+        <h3>Livestock Added!</h3>
+        <p>Your livestock has been successfully added.</p>
+        <div class="modal-actions" style="margin-top:20px">
+          <button class="modal-btn modal-btn--success" (click)="closeSuccessPopup()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

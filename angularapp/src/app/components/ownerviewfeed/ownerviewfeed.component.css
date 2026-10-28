@@ -1,0 +1,43 @@
+.type-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--amber-light);
+    color: #92400e;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.price-tag {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--green-mid);
+    font-size: 14px;
+}
+
+
+.desc-cell {
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 0;
+}
+
+.empty-state__icon {
+    font-size: 36px;
+}
+
+.empty-state p {
+    color: var(--gray-400);
+    font-size: 15px;
+    font-weight: 500;
+}

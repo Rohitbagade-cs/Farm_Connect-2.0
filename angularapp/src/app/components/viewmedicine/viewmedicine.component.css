@@ -1,0 +1,23 @@
+
+.desc-cell { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Badge shown when a medicine is referenced by requests (delete blocked) */
+.req-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--red-light);
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: help;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Disabled delete button still shows its tooltip */
+.tbl-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

@@ -1,0 +1,63 @@
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="auth-card__icon">🌿</div>
+        <h2 class="auth-card__title">Welcome Back</h2>
+        <p class="auth-card__sub">Sign in to Farm Connect</p>
+
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="auth-form">
+            <div class="field-group">
+                <label class="field-label">Email Address</label>
+                <input class="field-input" type="email" name="email" ngModel required email #email="ngModel"
+                    placeholder="you@example.com" />
+                <div class="field-error" *ngIf="email.invalid && email.touched">
+                    Please enter a valid email
+                </div>
+            </div>
+            <div class="field-group">
+                <label class="field-label">Password</label>
+                <input class="field-input" type="password" name="password" ngModel required #password="ngModel"
+                    placeholder="••••••••" />
+                <div class="field-error" *ngIf="password.invalid && password.touched">
+                    Password is required
+                </div>
+            </div>
+            <button type="submit" class="auth-btn" [disabled]="loginForm.invalid">
+                Sign In →
+            </button>
+
+        <!--  LOGIN SUCCESS POPUP -->
+        <div class="modal-overlay" *ngIf="showSuccessPopup">
+            <div class="modal-box" style="text-align:center">
+            <div style="font-size:40px;margin-bottom:12px">✅</div>
+            <h3>Login Successful!</h3>
+            <p>Welcome back to FarmConnect.</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn--success" (click)="onSuccessOk()">
+                Continue
+                </button>
+            </div>
+            </div>
+        </div>
+        
+        <!--  LOGIN ERROR POPUP -->
+        <div class="modal-overlay" *ngIf="showErrorPopup">
+            <div class="modal-box" style="text-align:center">
+            <div style="font-size:40px;margin-bottom:12px">❌</div>
+            <h3>Login Failed</h3>
+            <p>{{ errorMessage }}</p>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn--danger" (click)="onErrorOk()">
+                Try Again
+                </button>
+            </div>
+            </div>
+        </div>
+
+        </form>
+
+        <p class="auth-footer">
+            New to Farm Connect? <a routerLink="/register">Create an account</a>
+        </p>
+        
+    </div>
+</div>

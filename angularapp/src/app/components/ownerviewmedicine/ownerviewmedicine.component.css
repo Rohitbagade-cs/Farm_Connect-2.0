@@ -1,0 +1,64 @@
+.brand-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #e8f0fe;
+    color: #1a56db;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Category pill — purple toned */
+.category-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #f3e8ff;
+    color: #7c3aed;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Price tag */
+.price-tag {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--green-mid);
+    font-size: 14px;
+}
+
+/* Truncate long descriptions */
+.desc-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Empty state with icon */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 0;
+}
+
+.empty-state__icon {
+    font-size: 36px;
+}
+
+.empty-state p {
+    color: var(--gray-400);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.pg-empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray-600);
+    font-weight: 600;
+  }

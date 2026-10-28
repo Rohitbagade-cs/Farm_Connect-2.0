@@ -1,0 +1,66 @@
+<div class="pg">
+  <div class="pg-header">
+    <h2 class="pg-title">My Requests</h2>
+    <div class="pg-title-line"></div>
+  </div>
+
+  <div class="pg-toolbar">
+    <div class="pg-search">
+      <input type="text" placeholder="Search by type..." [(ngModel)]="searchTerm" (input)="onSearchChange()" />
+    </div>
+  </div>
+
+  <div class="pg-table-card">
+    <table class="pg-table">
+      <thead>
+        <tr>
+          <th class="center">S.No</th>
+          <th>Type</th>
+          <th>Medicine</th>
+          <th>Feed</th>
+          <th class="center">Qty</th>
+          <!-- <th class="center">Date</th> -->
+          <th class="center">Status</th>
+          <th class="center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading">
+          <td colspan="8" class="pg-empty">Loading...</td>
+        </tr>
+        <tr *ngIf="!loading && filteredRequests.length === 0">
+          <td colspan="8" class="pg-empty">No requests found.</td>
+        </tr>
+        <tr *ngFor="let req of filteredRequests; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td>{{ req.requestType }}</td>
+          <td>{{ req.requestType === 'Medicine' ? (req.medicine?.medicineName || '-') : '-' }}</td>
+          <td>{{ req.requestType === 'Feed' ? (req.feed?.feedName || '-') : '-' }}</td>
+          <td class="center">{{ req.quantity }}</td>
+          <!-- <td class="center">{{ req.submissionDate | date:'dd MMM yyyy' }}</td> -->
+          <td class="center">
+            <span class="badge" [class.badge--pending]="req.status === 'Pending'"
+              [class.badge--approved]="req.status === 'Approved'" [class.badge--rejected]="req.status === 'Rejected'">
+              {{ req.status }}
+            </span>
+          </td>
+          <td class="center">
+            <button class="tbl-btn tbl-btn--delete" (click)="openDeletePopup(req)">🗑 Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showConfirm">
+    <div class="modal-box">
+      <h3>Delete Request?</h3>
+      <p>This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--danger" (click)="confirmDelete()">Yes, Delete</button>
+        <button class="modal-btn modal-btn--cancel" (click)="closeDeletePopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+</div>

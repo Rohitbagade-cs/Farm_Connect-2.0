@@ -1,0 +1,18 @@
+angularapp/node_modules
+angularapp/.editorconfig
+angularapp/angular.json
+angularapp/karma.conf.js
+angularapp/package-lock.json
+angularapp/tsconfig.app.json
+angularapp/tsconfig.json
+angularapp/tsconfig.spec.json
+dotnetapp/.env
+
+
+<<<<<<< HEAD
+dotnetapp/Migrations
+=======
+dotnetapp/Migrations
+
+angularapp/.angularangularapp/.angular/
+>>>>>>> dbe11158889ac5e6b7f714fff1d24d13b5ce4b96

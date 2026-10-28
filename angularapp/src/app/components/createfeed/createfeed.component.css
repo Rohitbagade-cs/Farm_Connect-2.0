@@ -1,0 +1,63 @@
+.fc-file-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2px;
+}
+
+.fc-file-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    background: var(--green-pale);
+    color: var(--green-mid);
+    border: 1.5px dashed var(--green-light);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.fc-file-btn:hover {
+    background: var(--green-mid);
+    color: #fff;
+    border-style: solid;
+}
+
+.fc-file-name {
+    font-size: 13px;
+    color: var(--gray-600);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.fc-file-none {
+    color: var(--gray-400);
+    font-style: italic;
+}
+/* AI description generator button (supplier tool) */
+.ai-gen-btn {
+  margin-left: 10px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a73e8;
+  background: #e8f0fe;
+  border: 1px solid #c2d7f8;
+  border-radius: 16px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.ai-gen-btn:hover:not(:disabled) {
+  background: #d2e3fc;
+}
+.ai-gen-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

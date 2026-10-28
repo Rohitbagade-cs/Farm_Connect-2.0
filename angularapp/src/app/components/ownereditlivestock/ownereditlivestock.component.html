@@ -1,0 +1,116 @@
+<div class="form-pg">
+  <div class="form-card">
+   
+    <div class="form-card__header">
+      <div>
+        <h2 class="form-card__title">Edit Livestock</h2>
+        <div class="form-card__title-bar"></div>
+      </div>
+      <button class="fc-back-btn" type="button" (click)="back()">
+        ← Back
+      </button>
+    </div>
+    <!-- Error messages -->
+    <div class="fc-global-error" *ngIf="generalErrorMsg">{{ generalErrorMsg }}</div>
+    <div class="fc-global-error" *ngIf="duplicateErrorMsg">{{ duplicateErrorMsg }}</div>
+    <!-- Loading state -->
+    <div class="edit-loading" *ngIf="loading">
+      <span class="edit-loading__spinner"></span>
+      Loading livestock details...
+    </div>
+    <form #f="ngForm" (ngSubmit)="update(f)" novalidate *ngIf="!loading">
+    
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Name <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="name" placeholder="e.g. Bessie" [(ngModel)]="livestock.name"
+            #name="ngModel" required />
+          <div class="fc-error" *ngIf="(name.touched || f.submitted) && name.invalid">
+            *Name is required
+          </div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Species <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="species" placeholder="e.g. Cattle" [(ngModel)]="livestock.species"
+            #species="ngModel" required />
+          <div class="fc-error" *ngIf="(species.touched || f.submitted) && species.invalid">
+            *Species is required
+          </div>
+        </div>
+      </div>
+  
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Age <span class="fc-req">*</span></label>
+          <input class="fc-input" type="number" name="age" placeholder="Years" [(ngModel)]="livestock.age"
+            #age="ngModel" required min="0" />
+          <div class="fc-error" *ngIf="(age.touched || f.submitted) && age.invalid">
+            *Age is required
+          </div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Breed <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="breed" placeholder="e.g. Holstein" [(ngModel)]="livestock.breed"
+            #breed="ngModel" required />
+          <div class="fc-error" *ngIf="(breed.touched || f.submitted) && breed.invalid">
+            *Breed is required
+          </div>
+        </div>
+      </div>
+      
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Health Condition <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="healthCondition" placeholder="e.g. Healthy"
+            [(ngModel)]="livestock.healthCondition" #healthCondition="ngModel" required />
+          <div class="fc-error" *ngIf="(healthCondition.touched || f.submitted) && healthCondition.invalid">
+            *Health Condition is required
+          </div>
+        </div>
+        <div class="fc-field">
+          <label class="fc-label">Vaccination Status <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" name="vaccinationStatus" placeholder="e.g. Vaccinated"
+            [(ngModel)]="livestock.vaccinationStatus" #vaccinationStatus="ngModel" required />
+          <div class="fc-error" *ngIf="(vaccinationStatus.touched || f.submitted) && vaccinationStatus.invalid">
+            *Vaccination Status is required
+          </div>
+        </div>
+      </div>
+  
+      <div class="fc-field">
+        <label class="fc-label">Location <span class="fc-req">*</span></label>
+        <input class="fc-input" type="text" name="location" placeholder="e.g. North Barn, Farm 2"
+          [(ngModel)]="livestock.location" #location="ngModel" required />
+        <div class="fc-error" *ngIf="(location.touched || f.submitted) && location.invalid">
+          *Location is required
+        </div>
+      </div>
+
+      <button type="submit" class="fc-submit" [disabled]="loading">
+        {{ loading ? 'Updating...' : 'Update Livestock' }}
+      </button>
+    </form>
+  </div>
+  <!-- Success Popup -->
+  <div class="modal-overlay" *ngIf="showSuccessPopup">
+    <div class="modal-box" style="text-align:center">
+      <div style="font-size:48px; margin-bottom:12px">✅</div>
+      <h3>Updated Successfully!</h3>
+      <p>Your livestock details have been updated.</p>
+      <div class="modal-actions" style="margin-top:20px">
+        <button class="modal-btn modal-btn--success" (click)="okSuccess()">Done</button>
+      </div>
+    </div>
+  </div>
+  <!-- Logout Popup -->
+  <div class="modal-overlay" *ngIf="showLogoutModal">
+    <div class="modal-box">
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to logout?</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn--danger" (click)="confirmLogout()">Yes, Logout</button>
+        <button class="modal-btn modal-btn--cancel" (click)="closeLogoutModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

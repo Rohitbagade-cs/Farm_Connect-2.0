@@ -1,0 +1,58 @@
+<div class="mg-wrap">
+  <div class="mg-head">
+    <h1>🌦️ MonsoonGuard</h1>
+    <p>Weather that talks to your herd — alerts generated from the 7-day forecast for your farm.</p>
+  </div>
+
+  <!-- LOCATION SETUP -->
+  <div class="mg-card" *ngIf="!hasLocation">
+    <h3>📍 Where is your farm?</h3>
+    <p class="mg-muted">Set your farm location once — MonsoonGuard will watch the weather for it.</p>
+    <div class="mg-searchrow">
+      <input [(ngModel)]="query" (keyup.enter)="search()" placeholder="Search village, town or district…" />
+      <button class="mg-btn" (click)="search()" [disabled]="searching">{{ searching ? '…' : 'Search' }}</button>
+    </div>
+    <div class="mg-results" *ngIf="geoResults.length">
+      <button class="mg-place" *ngFor="let r of geoResults" (click)="pick(r)">
+        📌 {{ r.name }}<span *ngIf="r.admin1">, {{ r.admin1 }}</span><span *ngIf="r.country">, {{ r.country }}</span>
+      </button>
+    </div>
+    <div class="mg-or">— or —</div>
+    <button class="mg-btn mg-btn-gps" (click)="useMyLocation()" [disabled]="locating">
+      {{ locating ? 'Locating…' : '📍 Use my current location' }}
+    </button>
+    <p class="mg-error" *ngIf="errorMsg && !hasLocation">{{ errorMsg }}</p>
+  </div>
+
+  <!-- ALERTS -->
+  <div *ngIf="hasLocation">
+    <div class="mg-toolbar">
+      <span class="mg-loc">📍 {{ locName }}</span>
+      <span class="mg-herd" *ngIf="data?.herdSummary">🐄 {{ data?.herdSummary }}</span>
+      <span class="mg-spacer"></span>
+      <button class="mg-link" (click)="refresh()">🔄 Refresh</button>
+      <button class="mg-link" (click)="changeLocation()">✏️ Change</button>
+    </div>
+
+    <div class="mg-loading" *ngIf="loading">⛅ Reading the skies…</div>
+    <p class="mg-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <div *ngIf="data && !loading">
+      <div class="mg-alert" [ngClass]="'mg-' + a.severity" *ngFor="let a of data.alerts">
+        <div class="mg-alert-title">{{ a.title }}</div>
+        <div class="mg-alert-msg">{{ a.message }}</div>
+      </div>
+      <p class="mg-checked">Checked {{ data.checkedAt }} · Forecast: Open-Meteo</p>
+
+      <h3 class="mg-forecast-title">7-day forecast</h3>
+      <div class="mg-forecast">
+        <div class="mg-day" *ngFor="let f of data.forecast">
+          <div class="mg-day-name">{{ dayLabel(f.date) }}</div>
+          <div class="mg-day-emoji">{{ emoji(f.code) }}</div>
+          <div class="mg-day-temp">{{ f.tMax.toFixed(0) }}° <span>{{ f.tMin.toFixed(0) }}°</span></div>
+          <div class="mg-day-rain" *ngIf="f.precip >= 1">🌧️ {{ f.precip.toFixed(0) }}mm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

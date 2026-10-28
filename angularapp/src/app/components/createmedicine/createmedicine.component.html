@@ -1,0 +1,93 @@
+<div class="form-pg">
+  <div class="form-card">
+    <div class="form-card__header">
+      <div>
+        <h2 class="form-card__title">Add Medicine</h2>
+        <div class="form-card__title-bar"></div>
+      </div>
+    </div>
+
+    <div class="fc-global-error" *ngIf="showErrorMessage">
+      All fields are required.
+    </div>
+
+    <div class="fc-global-error" *ngIf="backendErrorMessage">
+      {{ backendErrorMessage }}
+    </div>
+
+    <form (ngSubmit)="addMedicine()">
+      <div class="fc-field">
+        <label class="fc-label">Medicine Name <span class="fc-req">*</span></label>
+        <input class="fc-input" type="text" [(ngModel)]="medicine.MedicineName" name="MedicineName"
+          placeholder="Enter medicine name" />
+      </div>
+
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Brand <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" [(ngModel)]="medicine.Brand" name="Brand" placeholder="Brand name" />
+        </div>
+
+        <div class="fc-field">
+          <label class="fc-label">Category <span class="fc-req">*</span></label>
+          <input class="fc-input" type="text" [(ngModel)]="medicine.Category" name="Category" placeholder="Category" />
+        </div>
+      </div>
+
+      <div class="fc-field">
+        <label class="fc-label">Description <span class="fc-req">*</span>
+          <button type="button" class="ai-gen-btn" (click)="generateDescription()"
+            [disabled]="generatingDescription || !medicine.MedicineName?.trim()"
+            title="Write the medicine name first, then generate a description">
+            {{ generatingDescription ? '✍️ Writing…' : '✍️ Generate with AI' }}
+          </button>
+        </label>
+        <textarea class="fc-textarea" [(ngModel)]="medicine.Description" name="Description"
+          placeholder="Describe the medicine..."></textarea>
+      </div>
+
+      <div class="fc-field-row">
+        <div class="fc-field">
+          <label class="fc-label">Quantity <span class="fc-req">*</span></label>
+          <input class="fc-input" type="number" [(ngModel)]="medicine.Quantity" name="Quantity" placeholder="0" min="1"/>
+        </div>
+
+        <div class="fc-field">
+          <label class="fc-label">Unit <span class="fc-req">*</span></label>
+          <select class="fc-select" [(ngModel)]="medicine.Unit" name="Unit">
+            <option value="">Select unit</option>
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <option value="ml">ml</option>
+            <option value="ltr">ltr</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fc-field">
+        <label class="fc-label">Price Per Unit <span class="fc-req">*</span></label>
+        <input class="fc-input" type="number" [(ngModel)]="medicine.PricePerUnit" name="PricePerUnit"
+          placeholder="₹0.00" />
+      </div>
+
+      <button type="submit" class="fc-submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Adding...' : 'Add Medicine' }}
+      </button>
+    </form>
+
+    <!-- Success Popup-->
+    <div class="modal-overlay" *ngIf="showSuccessPopup">
+      <div class="modal-box" style="text-align:center">
+        <div style="font-size:40px;margin-bottom:12px">✅</div>
+        <h3>Medicine Added!</h3>
+        <p>Your medicine has been added successfully.</p>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn--success" (click)="closeSuccessPopup()">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,127 @@
+.page {
+    padding: 18px 22px;
+}
+
+.title {
+    text-align: center;
+    font-weight: 800;
+    margin: 8px 0;
+}
+
+.divider {
+    width: 65%;
+    height: 2px;
+    background: #2c84b8;
+    opacity: 0.35;
+    margin: 0 auto 16px;
+}
+
+.empty {
+    text-align: center;
+    margin-top: 24px;
+    color: #444;
+    font-weight: 600;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.feedback-table thead th {
+    background: #2c84b8;
+    color: #fff;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.feedback-table td {
+    border: 1px solid #e0e0e0;
+    padding: 9px 10px;
+    font-size: 13px;
+}
+
+.center {
+    text-align: center;
+}
+
+.col-sno {
+    width: 70px;
+}
+
+.col-date {
+    width: 140px;
+}
+
+.col-action {
+    width: 140px;
+}
+
+.btn-profile {
+    background: #2c84b8;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-profile:hover {
+    background: #256fa0;
+}
+
+/* Modal */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    width: 300px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 14px 14px 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e6e6e6;
+    text-align: center;
+}
+
+.modal-title {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.modal-body p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #222;
+    text-align: left;
+}
+
+.btn-close {
+    margin-top: 10px;
+    width: 90px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    background: #d9534f;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    background: #c94743;
+}

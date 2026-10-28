@@ -1,0 +1,49 @@
+<div class="form-pg">
+  <div class="form-card">
+    <div class="form-card__header">
+
+      <div>
+        <h2 class="form-card__title">Request Form</h2>
+        <div class="form-card__title-bar"></div>
+      </div>
+
+    </div>
+
+    <form (ngSubmit)="submitRequest()">
+      <div class="fc-field">
+        <label class="fc-label">Request Type</label>
+        <input class="fc-input" type="text" [(ngModel)]="requestType" name="requestType" readonly />
+      </div>
+      <div class="fc-field" *ngIf="requestType === 'Feed'">
+        <label class="fc-label">Feed Name</label>
+        <input class="fc-input" type="text" [value]="feed.feedName" readonly />
+      </div>
+      <div class="fc-field" *ngIf="requestType === 'Medicine'">
+        <label class="fc-label">Medicine Name</label>
+        <input class="fc-input" type="text" [(ngModel)]="medicineName" name="medicineName" readonly />
+      </div>
+      <div class="fc-field">
+        <label class="fc-label">Select Livestock <span class="fc-req">*</span></label>
+        <select class="fc-select" [(ngModel)]="selectedLivestockId" name="selectedLivestockId">
+          <option value="">-- Choose Livestock --</option>
+          <option *ngFor="let l of livestocks" [value]="l.livestockId || l.LivestockId || l.id">
+            {{ l.name || l.Name || l.livestockName }}
+          </option>
+        </select>
+      </div>
+      <div class="fc-field">
+        <label class="fc-label">Quantity <span class="fc-req">*</span></label>
+        <input class="fc-input" type="number" [(ngModel)]="quantity" name="quantity" min="1"
+          placeholder="Enter quantity" />
+      </div>
+      <div style="display:flex; gap:12px; margin-top:8px">
+        <button type="submit" class="fc-submit" style="flex:2">Submit Request</button>
+        <button type="button" (click)="cancel()"
+          style="flex:1; height:48px; background:var(--red-light); color:var(--red); border:none; border-radius:6px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer;">
+          Cancel
+        </button>
+      </div>
+    </form>
+    
+  </div>
+</div>

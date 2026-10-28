@@ -1,0 +1,16 @@
+<!-- Floating Boli AI button, visible on every portal page -->
+<button class="boli-fab" (click)="toggle()" [attr.aria-label]="open ? 'Close Boli AI' : 'Talk to Boli AI'">
+  {{ open ? '✖' : '🎙️' }}
+</button>
+
+<div class="boli-overlay" *ngIf="open">
+  <div class="boli-panel">
+    <div class="boli-panel-head">
+      <span>🗣️ Boli AI</span>
+      <button class="boli-panel-close" (click)="toggle()" aria-label="Close">✖</button>
+    </div>
+    <div class="boli-panel-body">
+      <app-boliai></app-boliai>
+    </div>
+  </div>
+</div>

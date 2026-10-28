@@ -1,0 +1,85 @@
+<div class="page">
+  <h2 class="title">Livestock</h2>
+  <div class="title-line"></div>
+ 
+  <!-- Search -->
+  <div class="search-wrap">
+    <input
+      type="text"
+      class="search-box"
+      placeholder="Search..."
+      [(ngModel)]="searchTerm"
+      (input)="applyFilter()"
+    />
+  </div>
+ 
+  <div *ngIf="loading" class="info">Loading...</div>
+  <div *ngIf="!loading && errorMsg" class="info error">{{ errorMsg }}</div>
+ 
+  <div class="table-wrap" *ngIf="!loading && filteredList?.length > 0">
+    <table class="livestock-table">
+      <thead>
+        <tr>
+          <th class="col-sno">S.No</th>
+          <th>Name</th>
+          <th>Species</th>
+          <th class="col-age">Age</th>
+          <th>Breed</th>
+          <th>Health Condition</th>
+          <th>Location</th>
+          <th>Vaccination Status</th>
+          <th class="col-action">Action</th>
+        </tr>
+      </thead>
+ 
+      <tbody>
+        <tr *ngFor="let l of filteredList; let i = index">
+          <td class="center">{{ i + 1 }}</td>
+          <td class="center">{{ getName(l) }}</td>
+          <td class="center">{{ getSpecies(l) }}</td>
+          <td class="center">{{ getAge(l) }}</td>
+          <td class="center">{{ getBreed(l) }}</td>
+          <td class="center">{{ getHealth(l) }}</td>
+          <td class="center">{{ getLocation(l) }}</td>
+          <td class="center">{{ getVaccStatus(l) }}</td>
+          <td class="center">
+            <button class="edit-btn" (click)="editLivestock(l)">Edit</button>
+            <button class="delete-btn" (click)="openDeleteModal(l)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div *ngIf="!loading && (!filteredList || filteredList.length === 0) && !errorMsg" class="info">
+    No records found.
+  </div>
+</div>
+ 
+<!-- Delete confirmation -->
+<div class="modal-backdrop" *ngIf="showDeleteModal">
+  <div class="modal">
+    <p class="modal-text">Are you sure you want to delete?</p>
+ 
+    <div class="modal-actions">
+      <button class="modal-yes" (click)="confirmDelete()">Yes, Delete</button>
+      <button class="modal-cancel" (click)="closeDeleteModal()">Cancel</button>
+    </div>
+ 
+    <div class="modal-error" *ngIf="deleteErrorMsg">
+      {{ deleteErrorMsg }}
+    </div>
+  </div>
+</div>
+ 
+<!-- Logout confirmation -->
+<div class="modal-backdrop" *ngIf="showLogoutModal">
+  <div class="modal">
+    <p class="modal-text">Are you sure you want to logout?</p>
+    <div class="modal-actions">
+      <button class="modal-yes" (click)="confirmLogout()">Yes, Logout</button>
+      <button class="modal-cancel" (click)="closeLogoutModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+ 

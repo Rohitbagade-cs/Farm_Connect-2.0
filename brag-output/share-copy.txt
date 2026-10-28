@@ -1,0 +1,3 @@
+FarmConnect brings the farm workflow into one place: livestock, medicines, feeds, requests, and feedback all sit inside a clean role-based dashboard built for farmers and suppliers alike.
+
+Built for real agricultural operations, it turns fragmented admin work into one calmer system for healthier farms and faster decisions.

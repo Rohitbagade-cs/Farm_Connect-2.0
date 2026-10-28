@@ -1,0 +1,40 @@
+<div class="boli-card">
+  <h1>🗣️ Boli AI</h1>
+  <p class="boli-sub">अपनी भाषा में बोलिए — Boli सुनेगी और जवाब देगी<br>
+    <span>Speak in your language. No typing, no English needed.</span></p>
+
+    <div class="boli-langs">
+      <button *ngFor="let l of langs"
+              [class.active]="lang.id === l.id"
+              (click)="selectLang(l)">{{ l.label }}</button>
+    </div>
+
+    <div *ngIf="!supported" class="boli-warn">
+      ⚠️ Voice input needs Google Chrome or Microsoft Edge on this device.
+    </div>
+
+    <button class="boli-mic" [class.live]="state === 'listening'"
+            (click)="toggleMic()" [disabled]="!supported || state === 'thinking'"
+            [attr.aria-label]="state === 'listening' ? 'Stop listening' : 'Start speaking'">
+      <span class="boli-mic-icon">{{ state === 'listening' ? '⏹' : '🎙️' }}</span>
+    </button>
+    <p class="boli-status">{{ statusText }}</p>
+
+    <div class="boli-live" *ngIf="interim">{{ interim }}</div>
+
+    <button class="boli-stop" *ngIf="state === 'speaking'" (click)="stopSpeaking()">
+      🔇 Stop speaking
+    </button>
+
+    <p class="boli-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <div class="boli-history" *ngIf="turns.length">
+      <h3>💬 Conversation</h3>
+      <div class="boli-turn" *ngFor="let t of turns">
+        <p class="boli-q">🎤 <span>{{ t.question }}</span></p>
+        <p class="boli-a">🗣️ <span>{{ t.answer }}</span></p>
+      </div>
+    </div>
+
+    <p class="boli-hint">Tip: use Chrome, allow microphone access when asked, and speak clearly.</p>
+</div>

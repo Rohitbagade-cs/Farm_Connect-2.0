@@ -1,0 +1,175 @@
+.dash-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, var(--green-dark) 0%, #2d5a3d 100%);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.18);
+}
+
+.dash-nav__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dash-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.dash-nav__brand strong {
+  font-weight: 700;
+}
+
+.dash-nav__badge {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.dash-nav__links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dash-nav__links>a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.dash-nav__links>a:hover,
+.dash-nav__links>a.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.dn-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Invisible bridge over the gap between the button and the menu,
+   so the menu doesn't close while moving the cursor down to it */
+.dn-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  display: none;
+}
+.dn-dropdown:hover::after {
+  display: block;
+}
+
+.dn-dropbtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all var(--transition);
+}
+
+.dn-dropbtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.dn-chevron {
+  font-size: 11px;
+}
+
+.dn-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #fff;
+  min-width: 180px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.dn-menu a {
+  display: block;
+  padding: 11px 16px;
+  color: var(--gray-800);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background var(--transition);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.dn-menu a:last-child {
+  border-bottom: none;
+}
+
+.dn-menu a:hover {
+  background: var(--green-pale);
+  color: var(--green-mid);
+}
+
+.dn-dropdown:hover .dn-menu {
+  display: block;
+}
+
+.dn-logout {
+  margin-left: 8px;
+  background: var(--red);
+  border: none;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.dn-logout:hover {
+  background: #a93226;
+}
+
+
+.owner-nav {
+  background: linear-gradient(135deg, #0d2b1e 0%, #1a4a2e 100%);
+ }

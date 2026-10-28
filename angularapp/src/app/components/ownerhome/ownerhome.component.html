@@ -1,0 +1,85 @@
+
+<div class="owner-page">
+
+    <div class="owner-hero">
+        <div class="owner-hero__shapes">
+            <div class="shape s1"></div>
+            <div class="shape s2"></div>
+            <div class="shape s3"></div>
+        </div>
+        <div class="owner-hero__left">
+            <span class="owner-hero__tag">🌱 FarmConnect</span>
+            <p class="owner-hero__greet">{{ greeting }},</p>
+            <h1 class="owner-hero__name">{{ ownerName }} 👋</h1>
+            <p class="owner-hero__date">{{ currentDate }}</p>
+            <p class="owner-hero__desc">
+                Welcome to your farm dashboard. Manage your livestock, browse supplies and track your requests — all in
+                one place.
+            </p>
+            <div class="owner-hero__actions">
+                <button class="hero-cta hero-cta--primary" (click)="navigate('createlivestock')">
+                    ➕ Add Livestock
+                </button>
+                <button class="hero-cta hero-cta--ghost" (click)="navigate('viewmedicine')">
+                    💊 Browse Medicines
+                </button>
+            </div>
+        </div>
+        <div class="owner-hero__right">
+            <div class="farm-illustration">
+                <div class="farm-card farm-card--1">
+                    <span>🐄</span>
+                    <p>Livestock</p>
+                </div>
+                <div class="farm-card farm-card--2">
+                    <span>🌾</span>
+                    <p>Feeds</p>
+                </div>
+                <div class="farm-card farm-card--3">
+                    <span>💊</span>
+                    <p>Medicines</p>
+                </div>
+                <div class="farm-card farm-card--4">
+                    <span>📋</span>
+                    <p>Requests</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features Grid -->
+    <div class="owner-section">
+        <div class="owner-section__head">
+            <h2 class="owner-section__title">What would you like to do?</h2>
+            <div class="owner-section__bar"></div>
+        </div>
+        <div class="owner-grid">
+            <div class="owner-card" *ngFor="let f of features; let i = index" [class]="'owner-card ' + f.color"
+                [style.animation-delay]="i * 0.08 + 's'" (click)="navigate(f.route)">
+                <div class="owner-card__top">
+                    <span class="owner-card__icon">{{ f.icon }}</span>
+                    <span class="owner-card__arrow">↗</span>
+                </div>
+                <h3 class="owner-card__title">{{ f.label }}</h3>
+                <p class="owner-card__desc">{{ f.desc }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Tips Section -->
+    <div class="owner-section">
+        <div class="owner-section__head">
+            <h2 class="owner-section__title">Helpful Tips</h2>
+            <div class="owner-section__bar"></div>
+        </div>
+        <div class="tips-list">
+            <div class="tip-item" *ngFor="let t of tips; let i = index" [style.animation-delay]="i * 0.1 + 's'">
+                <span class="tip-item__icon">{{ t.icon }}</span>
+                <p class="tip-item__text">{{ t.text }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Strip -->
+    <div class="owner-footer-strip">
+        <span>🌿</span>
+        <p>FarmConnect — Connecting Farmers with Quality Suppliers</p>
+    </div>
+</div>
